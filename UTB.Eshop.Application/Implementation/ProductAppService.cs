@@ -17,5 +17,10 @@ namespace UTB.Eshop.Application.Implementation
         {
             return _productRepository.GetAll().ToList();
         }
+
+        public void Create(Product product)
+        {
+            _productRepository.Add(product);
+        }
     }
 }

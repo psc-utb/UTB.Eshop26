@@ -20,5 +20,20 @@ namespace UTB.Eshop26.Areas.Admin.Controllers
             IList<Product> products = _productAppService.SelectAll();
             return View(products);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Create(Product product)
+        {
+            _productAppService.Create(product);
+
+            return RedirectToAction(nameof(ProductController.Select));
+        }
     }
 }
