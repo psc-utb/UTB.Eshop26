@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using UTB.Eshop.Domain.Validations;
 
 namespace UTB.Eshop.Domain.Entities
 {
@@ -8,6 +9,7 @@ namespace UTB.Eshop.Domain.Entities
     {
         [Required]
         [StringLength(70)]
+        [FirstLetterUppercase]
         public string? Name { get; set; }
         public string? Description { get; set; }
         public double Price { get; set; }
