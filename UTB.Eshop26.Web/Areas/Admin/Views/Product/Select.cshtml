@@ -33,7 +33,7 @@
                         <td>@product.Price</td>
                         <td>@product.ImageSrc</td>
                         <td>
-                            <form asp-action="Delete" asp-route-id="@product.Id" method="post">
+                            <form asp-action="Delete" asp-route-id="@product.Id" method="post" onclick="return confirmDelete();">
                                 <button type="submit" class="btn btn-primary">Delete</button>
                             </form>
                         </td>
@@ -47,4 +47,9 @@
     {
         <p>Product table is empty!</p>
     }
+}
+
+@section Scripts
+{
+    <script src="~/js/dialogs.js"></script>
 }
