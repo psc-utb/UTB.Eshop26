@@ -1,14 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UTB.Eshop.Application.Abstraction;
+using UTB.Eshop.Domain.Entities;
 
 namespace UTB.Eshop26.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductController : Controller
     {
-        // GET: /<controller>/
+        IProductAppService _productAppService;
+
+        public ProductController(IProductAppService productAppService)
+        {
+            _productAppService = productAppService;
+        }
+
+        // GET: /<controller>/Select
         public IActionResult Select()
         {
-            return View();
+            IList<Product> products = _productAppService.SelectAll();
+            return View(products);
         }
     }
 }

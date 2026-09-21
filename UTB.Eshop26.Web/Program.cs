@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using UTB.Eshop.Application.Abstraction;
+using UTB.Eshop.Application.Implementation;
 using UTB.Eshop.Domain.Entities.Interfaces.Repository;
 using UTB.Eshop.Infrastructure.Database;
 using UTB.Eshop.Infrastructure.Repository;
@@ -19,6 +21,9 @@ builder.Services.AddDbContext<EshopDbContext>(optionsBuilder => optionsBuilder.U
 
 //repository registration
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+//registration of application services
+builder.Services.AddScoped<IProductAppService, ProductAppService>();
 
 var app = builder.Build();
 
