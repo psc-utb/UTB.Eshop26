@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using UTB.Eshop.Domain.Entities.Interfaces.Repository;
 using UTB.Eshop.Infrastructure.Database;
+using UTB.Eshop.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,9 @@ if (serverVersion == null)
     serverVersion = new MySqlServerVersion("8.0.43");
 }
 builder.Services.AddDbContext<EshopDbContext>(optionsBuilder => optionsBuilder.UseMySql(connectionString, serverVersion));
+
+//repository registration
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
