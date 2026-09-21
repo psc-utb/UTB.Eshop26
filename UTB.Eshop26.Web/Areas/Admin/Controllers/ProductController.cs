@@ -35,5 +35,19 @@ namespace UTB.Eshop26.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(ProductController.Select));
         }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            bool deleted = _productAppService.Delete(id);
+
+            if (deleted)
+            {
+                return RedirectToAction(nameof(ProductController.Select));
+            }
+            else
+                return NotFound();
+        }
     }
 }

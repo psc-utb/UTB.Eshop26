@@ -22,5 +22,20 @@ namespace UTB.Eshop.Application.Implementation
         {
             _productRepository.Add(product);
         }
+
+        public bool Delete(int id)
+        {
+            bool deleted = false;
+
+            Product? product = _productRepository.GetById(id);
+
+            if (product != null)
+            {
+                _productRepository.Delete(product);
+                deleted = true;
+            }
+
+            return deleted;
+        }
     }
 }
