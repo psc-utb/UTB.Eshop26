@@ -21,9 +21,12 @@ builder.Services.AddDbContext<EshopDbContext>(optionsBuilder => optionsBuilder.U
 
 //repository registration
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICarouselRepository, CarouselRepository>();
 
 //registration of application services
 builder.Services.AddScoped<IProductAppService, ProductAppService>();
+builder.Services.AddScoped<ICarouselAppService, CarouselAppService>();
+builder.Services.AddScoped<IHomeService, HomeService>();
 
 var app = builder.Build();
 
