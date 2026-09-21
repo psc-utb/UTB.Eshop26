@@ -31,9 +31,14 @@ namespace UTB.Eshop26.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            _productAppService.Create(product);
+            if (ModelState.IsValid)
+            {
+                _productAppService.Create(product);
 
-            return RedirectToAction(nameof(ProductController.Select));
+                return RedirectToAction(nameof(ProductController.Select));
+            }
+
+            return View(product);
         }
 
         [ValidateAntiForgeryToken]
