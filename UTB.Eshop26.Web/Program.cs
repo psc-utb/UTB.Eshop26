@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using UTB.Eshop.Application.Abstraction;
 using UTB.Eshop.Application.Implementation;
 using UTB.Eshop.Domain.Entities.Interfaces.Repository;
 using UTB.Eshop.Infrastructure.Database;
 using UTB.Eshop.Infrastructure.Repository;
+using UTB.Eshop26.Web.Validations.Adapters.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,10 @@ if (serverVersion == null)
     serverVersion = new MySqlServerVersion("8.0.43");
 }
 builder.Services.AddDbContext<EshopDbContext>(optionsBuilder => optionsBuilder.UseMySql(connectionString, serverVersion));
+
+//validation adapter providers registration
+builder.Services.AddSingleton<ValidationAttributeAdapterProvider>();
+builder.Services.AddSingleton<IValidationAttributeAdapterProvider, ClientValidationAttributeAdapterProvider>();
 
 //repository registration
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
