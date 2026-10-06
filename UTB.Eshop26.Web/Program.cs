@@ -53,6 +53,19 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 });
 
+
+//configuration of session
+builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+builder.Services.AddSession(options =>
+{
+    // Set a short timeout for easy testing.
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    // Make the session cookie essential
+    options.Cookie.IsEssential = true;
+});
+
+
 //validation adapter providers registration
 builder.Services.AddSingleton<ValidationAttributeAdapterProvider>();
 builder.Services.AddSingleton<IValidationAttributeAdapterProvider, ClientValidationAttributeAdapterProvider>();
@@ -81,6 +94,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//activation of session
+app.UseSession();
+
 app.UseRouting();
 
 app.UseAuthentication();
