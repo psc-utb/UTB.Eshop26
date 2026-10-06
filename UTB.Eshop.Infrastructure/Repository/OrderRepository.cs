@@ -2,6 +2,7 @@
 using UTB.Eshop.Domain.Entities;
 using UTB.Eshop.Domain.Entities.Interfaces.Repository;
 using UTB.Eshop.Infrastructure.Database;
+using UTB.Eshop.Infrastructure.Identity;
 
 namespace UTB.Eshop.Infrastructure.Repository
 {
@@ -14,6 +15,15 @@ namespace UTB.Eshop.Infrastructure.Repository
         public IEnumerable<Order> GetAllWithUsers()
         {
             return dbSet.Include(o => o.User).ToList();
+        }
+
+        public IEnumerable<Order> GetAllByUserWithAllIncluded(int userId)
+        {
+            return dbSet.Where(o => o.UserId == userId)
+                                            .Include(o => o.User)
+                                            .Include(o => o.OrderItems)
+                                               .ThenInclude(oi => oi.Product)
+                                            .ToList();
         }
     }
 }

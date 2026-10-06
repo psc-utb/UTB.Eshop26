@@ -18,6 +18,11 @@ namespace UTB.Eshop.Application.Implementation
             return _orderRepository.GetAllWithUsers().ToList();
         }
 
+        public IList<Order> SelectForUser(int userId)
+        {
+            return _orderRepository.GetAllByUserWithAllIncluded(userId).ToList();
+        }
+
         public void Create(Order order)
         {
             _orderRepository.Add(order);

@@ -7,5 +7,6 @@ namespace UTB.Eshop.Domain.Entities.Interfaces.Repository
     public interface IOrderRepository : IRepository<Order, int>
     {
         IEnumerable<Order> GetAllWithUsers();
+        IEnumerable<Order> GetAllByUserWithAllIncluded(int userId);
     }
 }
