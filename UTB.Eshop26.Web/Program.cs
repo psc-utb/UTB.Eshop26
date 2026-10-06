@@ -87,6 +87,7 @@ builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IAccountService, AccountService<int>>();
 builder.Services.AddScoped<IOrderAppService, OrderAppService>();
 builder.Services.AddScoped<IOrderItemAppService, OrderItemAppService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
