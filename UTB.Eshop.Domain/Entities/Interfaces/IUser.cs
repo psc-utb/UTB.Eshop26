@@ -1,6 +1,6 @@
 ﻿namespace UTB.Eshop.Domain.Entities.Interfaces
 {
-    public interface IUser<TKey> : IEntity<TKey>
+    public interface IUser<TKey> : IEntity<TKey> where TKey : notnull
     {
         string? UserName { get; set; }
         string? Email { get; set; }

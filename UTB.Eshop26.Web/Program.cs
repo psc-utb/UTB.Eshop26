@@ -75,6 +75,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICarouselRepository, CarouselRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 //Account manager registration
 builder.Services.AddScoped<IAccountManager<int>, AccountIdentityManager>();
