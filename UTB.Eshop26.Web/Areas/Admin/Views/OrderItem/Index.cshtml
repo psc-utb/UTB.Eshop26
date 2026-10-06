@@ -1,0 +1,43 @@
+﻿@model IList<OrderItem>
+
+@{
+    ViewData["Title"] = "Order Item Administration";
+}
+<h1>@ViewData["Title"]</h1>
+
+<a asp-action="Create">Create Order Item</a>
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">@nameof(OrderItem.Id)</th>
+                    <th scope="col">@nameof(OrderItem.ProductID)</th>
+                    <th scope="col">@nameof(OrderItem.Product.Name)</th>
+                    <th scope="col">@nameof(OrderItem.OrderID)</th>
+                    <th scope="col">@nameof(OrderItem.Order.OrderNumber)</th>
+                    <th scope="col">@nameof(OrderItem.Order.User.UserName)</th>
+                    <th scope="col">@nameof(OrderItem.Amount)</th>
+                    <th scope="col">@nameof(OrderItem.Price)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; ++i)
+                {
+                    var orderItem = Model[i];
+                    <tr>
+                        <th scope="row">@orderItem.Id</th>
+                        <td>@orderItem.Product?.Id</td>
+                        <td>@orderItem.Product?.Name</td>
+                        <td>@orderItem.Order?.Id</td>
+                        <td>@orderItem.Order?.OrderNumber</td>
+                        <td>@orderItem.Order?.User.UserName</td>
+                        <td>@orderItem.Amount</td>
+                        <td>@orderItem.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
