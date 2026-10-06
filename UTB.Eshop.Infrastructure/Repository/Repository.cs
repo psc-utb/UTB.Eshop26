@@ -7,7 +7,7 @@ namespace UTB.Eshop.Infrastructure.Repository
 {
     public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IEntity<TKey> where TKey : notnull
     {
-        private readonly DbSet<T> dbSet;
+        protected readonly DbSet<T> dbSet;
         private readonly DbContext dbContext;
         public Repository(DbContext dbContext)
         {

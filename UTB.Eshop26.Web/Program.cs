@@ -73,6 +73,8 @@ builder.Services.AddSingleton<IValidationAttributeAdapterProvider, ClientValidat
 //repository registration
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICarouselRepository, CarouselRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
 //Account manager registration
 builder.Services.AddScoped<IAccountManager<int>, AccountIdentityManager>();
@@ -82,6 +84,8 @@ builder.Services.AddScoped<IProductAppService, ProductAppService>();
 builder.Services.AddScoped<ICarouselAppService, CarouselAppService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IAccountService, AccountService<int>>();
+builder.Services.AddScoped<IOrderAppService, OrderAppService>();
+builder.Services.AddScoped<IOrderItemAppService, OrderItemAppService>();
 
 var app = builder.Build();
 
